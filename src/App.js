@@ -52,7 +52,7 @@ function App() {
 
   function handleSubmit() {
     var balance = {}
-    let remaining = [800, 300, 100, 0]
+    let forCal = [800, 300, 100, 0]
     let idx = deno.findIndex((val) => {
       return val < amount
     })
@@ -60,8 +60,10 @@ function App() {
     for (let i = idx; i < n; i++) {
       ans1 = Math.floor(amount / deno[i])
       ans2 = amount - ans1 * deno[i]
-      ans1 = ans2 >= remaining[i] ? ans1 : ans1 - 1
+      if (ans2 >= forCal[i]) ans2 = ans1
+      else ans2 = ans1 - 1
 
+      ans1 = ans2
       amount -= deno[i] * ans1
       balance[deno[i]] = ans1
     }
